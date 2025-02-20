@@ -5,6 +5,10 @@ import cors from "cors"
 import helmet from "helmet"
 import morgan from "morgan"
 import { dbConnection } from "./mongo.js"
+import authRoutes from "../src/auth/auth.routes.js"
+import userRoutes from "../src/user/user.routes.js"
+import apiLimiter from "../src/middlewares/rate-limit-validator.js"
+import AddUserAdmin from "../src/auth/auth.controller.js"
 
 const middlewares = (app) => {
         app.use(express.urlencoded({extended: false}))
@@ -12,7 +16,13 @@ const middlewares = (app) => {
         app.use(cors())
         app.use(helmet())
         app.use(morgan("dev"))
+        app.use(apiLimiter)
     }
+
+const routes = (app) =>{
+    app.use("/gestionOpinion/v1/auth", authRoutes)
+    app.use("/gestionOpinion/v1/user", userRoutes)
+}
 
 const conectarDB = async () =>{
     try{
@@ -28,6 +38,8 @@ export const initServer = () => {
     try{
         middlewares(app)
         conectarDB()
+        routes(app)
+        AddUserAdmin()
         app.listen(process.env.PORT)
         console.log(`Server running on port ${process.env.PORT}`)
     }catch(err){
