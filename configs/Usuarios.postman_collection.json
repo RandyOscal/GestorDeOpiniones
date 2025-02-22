@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "478b0044-8103-4063-8567-5bf4cf354d51",
+		"name": "Usuarios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "41971060"
+	},
+	"item": [
+		{
+			"name": "Registrar",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Saul",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "Donis",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Edonis01",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "edonis-2023279@kinal.edu.gt",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Edonis99@",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "USER_ROLE",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "profilePicture",
+							"type": "file",
+							"src": "/C:/Users/PC/Desktop/Repositorio practica Supervisada/GestorDeOpiniones/public/uploads/profile_pictures/Captura de pantalla (3).png"
+						}
+					]
+				},
+				"url": "http://127.0.0.1:3000/gestionOpinion/v1/auth/register"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Edonis01\",\r\n    \"password\": \"Edonis99@\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:3000/gestionOpinion/v1/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Contraseña",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2I5NTAxOWQ3Y2M5Y2E4ZWEyNjhkZDYiLCJpYXQiOjE3NDAxOTc5NTEsImV4cCI6MTc0MDIwMTU1MX0.-GOvLr7GF8lrtpkZDywmMci7mOvENymbrxVf407MDP8"
+					}
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"oldPassword\": \"Edonis99@\",\r\n    \"newPassword\": \"Edonis99@\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:3000/gestionOpinion/v1/user/updatePassword"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Foto de Perfil",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2I5NTAxOWQ3Y2M5Y2E4ZWEyNjhkZDYiLCJpYXQiOjE3NDAxOTc5NTEsImV4cCI6MTc0MDIwMTU1MX0.-GOvLr7GF8lrtpkZDywmMci7mOvENymbrxVf407MDP8"
+					}
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "profilePicture",
+							"type": "file",
+							"src": "/C:/Users/PC/Desktop/Repositorio practica Supervisada/GestorDeOpiniones/public/uploads/profile_pictures/Captura de pantalla (2).png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/gestionOpinion/v1/user/updateProfilePicture",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"gestionOpinion",
+						"v1",
+						"user",
+						"updateProfilePicture"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mostrar Usuarios",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:3000/gestionOpinion/v1/user/"
+			},
+			"response": []
+		}
+	]
+}
